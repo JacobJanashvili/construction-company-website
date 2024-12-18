@@ -50,7 +50,7 @@
 
       .page-transfer {
         background-color: #ffb717;
-        padding: 1px 18px;
+        padding: 10px 18px;
       }
       .no-background{
         background-color: white;

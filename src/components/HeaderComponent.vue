@@ -11,7 +11,7 @@
     <div class="language-select"></div>
   </menu>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 :root {
   overflow: hidden;
 }
@@ -23,7 +23,7 @@ menu {
   top: 0;
   left: 0;
   right: 0;
-  width: 98%;
+  width: 100%;
   margin: 0;
   align-items: center;
   background-color: #fffeff;

@@ -1,6 +1,54 @@
 <script setup>
 import HeaderComponent from "./HeaderComponent.vue";
 import HeroComponent from "./HeroComponent.vue";
+import Accordion from "./Accordion.vue";
+import Footer from "./Footer.vue";
+const AccordionList = [
+  {
+    id: 0,
+    title: "შიდა/გარე ძალოვანი და განათების ქსელები",
+    description:
+      "2005 წლიდან, შპს ,,სამეცნიერო-საწარმოო კომპანია ელ-ეს-ჯი”-ს ორიენტირი რთული და მრავალი საინჟინრო დისციპლინის მომცველი პროექტების შესრულება გახდა. შესაბამისად, ვასრულებთ კომპლექსურ საინჟინრო-სამშენებლო სამუშაოებს, ვახორციელებთ პროექტების მართვას და გადავჭრით რთულ სისტემური საინჟინრო და გარემოსდაცვით ამოცანებს.",
+  },
+  {
+    id: 1,
+    title: "საშუალო და დაბალი ძაბვის გამანაწილებელი კვანძები",
+    description:
+      "2005 წლიდან, შპს ,,სამეცნიერო-საწარმოო კომპანია ელ-ეს-ჯი”-ს ორიენტირი რთული და მრავალი საინჟინრო დისციპლინის მომცველი პროექტების შესრულება გახდა. შესაბამისად, ვასრულებთ კომპლექსურ საინჟინრო-სამშენებლო სამუშაოებს, ვახორციელებთ პროექტების მართვას და გადავჭრით რთულ სისტემური საინჟინრო და გარემოსდაცვით ამოცანებს.",
+  },
+
+  {
+    id: 2,
+    title: "სამეთვალყურეო და სპეციალიზირებული მონიტორინგის სისტემები",
+    description:
+      "2005 წლიდან, შპს ,,სამეცნიერო-საწარმოო კომპანია ელ-ეს-ჯი”-ს ორიენტირი რთული და მრავალი საინჟინრო დისციპლინის მომცველი პროექტების შესრულება გახდა. შესაბამისად, ვასრულებთ კომპლექსურ საინჟინრო-სამშენებლო სამუშაოებს, ვახორციელებთ პროექტების მართვას და გადავჭრით რთულ სისტემური საინჟინრო და გარემოსდაცვით ამოცანებს.",
+  },
+  {
+    id: 3,
+    title: "ოპტიკურ-ბოჭკოვანი ქსელები",
+    description:
+      "2005 წლიდან, შპს ,,სამეცნიერო-საწარმოო კომპანია ელ-ეს-ჯი”-ს ორიენტირი რთული და მრავალი საინჟინრო დისციპლინის მომცველი პროექტების შესრულება გახდა. შესაბამისად, ვასრულებთ კომპლექსურ საინჟინრო-სამშენებლო სამუშაოებს, ვახორციელებთ პროექტების მართვას და გადავჭრით რთულ სისტემური საინჟინრო და გარემოსდაცვით ამოცანებს.",
+  },
+  {
+    id: 4,
+    title: "გათბობა-კონდიცირებისა და ვენტილაციის პროექტირება და განხირციელება",
+    description:
+      "2005 წლიდან, შპს ,,სამეცნიერო-საწარმოო კომპანია ელ-ეს-ჯი”-ს ორიენტირი რთული და მრავალი საინჟინრო დისციპლინის მომცველი პროექტების შესრულება გახდა. შესაბამისად, ვასრულებთ კომპლექსურ საინჟინრო-სამშენებლო სამუშაოებს, ვახორციელებთ პროექტების მართვას და გადავჭრით რთულ სისტემური საინჟინრო და გარემოსდაცვით ამოცანებს.",
+  },
+  {
+    id: 5,
+    title: "ხანძარქრობის სისტემების პროექტირება და განხირციელება",
+    description:
+      "2005 წლიდან, შპს ,,სამეცნიერო-საწარმოო კომპანია ელ-ეს-ჯი”-ს ორიენტირი რთული და მრავალი საინჟინრო დისციპლინის მომცველი პროექტების შესრულება გახდა. შესაბამისად, ვასრულებთ კომპლექსურ საინჟინრო-სამშენებლო სამუშაოებს, ვახორციელებთ პროექტების მართვას და გადავჭრით რთულ სისტემური საინჟინრო და გარემოსდაცვით ამოცანებს.",
+  },
+  {
+    id: 6,
+    title:
+      "წყლის მოწოდების და გამწმენდი/სატუმბი მინი-სადგურების პროექტირება, მონტაჟი და გაშევბა",
+    description:
+      "2005 წლიდან, შპს ,,სამეცნიერო-საწარმოო კომპანია ელ-ეს-ჯი”-ს ორიენტირი რთული და მრავალი საინჟინრო დისციპლინის მომცველი პროექტების შესრულება გახდა. შესაბამისად, ვასრულებთ კომპლექსურ საინჟინრო-სამშენებლო სამუშაოებს, ვახორციელებთ პროექტების მართვას და გადავჭრით რთულ სისტემური საინჟინრო და გარემოსდაცვით ამოცანებს.",
+  },
+];
 </script>
 <template>
   <HeaderComponent />
@@ -65,29 +113,49 @@ import HeroComponent from "./HeroComponent.vue";
     </div>
     <div class="img-subwrapper">
       <img src="/Batumis-sinagoga.jpg" alt="" />
-      <div class="text-background">
-        ბათუმის სინაგოგა
-      </div>
+      <div class="text-background">ბათუმის სინაგოგა</div>
     </div>
     <div class="img-subwrapper">
       <img src="/Gamshvebi-punqtebi.jpg" alt="" />
-      <div class="text-background">
-        გამშვები პუნქტები
-      </div>
+      <div class="text-background">გამშვები პუნქტები</div>
     </div>
     <div class="img-subwrapper">
       <img src="/Tetraqtis-samushaoebi.jpg" alt="" />
-      <div class="text-background">
-        ტეტრაქტის სამუშაოები
-      </div>
+      <div class="text-background">ტეტრაქტის სამუშაოები</div>
     </div>
   </section>
+  <section class="section4">
+    <div class="img-wrapper">
+      <h1>სერვისები</h1>
+      <img src="/Servisebi.jpg" alt="" />
+    </div>
+    <div class="accordion-wrapper">
+      <Accordion
+        v-for="accordion in AccordionList"
+        :key="accordion.id"
+        :header="accordion.title"
+        :content="accordion.description"
+      />
+    </div>
+  </section>
+  <section class="logo-section">
+    <div class="img-wrapper">
+      <img src="/Logo1.jpg" alt="" />
+      <img src="/Logo2.jpg" alt="" />
+      <img src="/Logo3.jpg" alt="" />
+      <img src="/Logo4.jpg" alt="" />
+    </div>
+  </section>
+  <Footer />
 </template>
 
 <style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 :root {
-  z-index: 0;
-  overflow-y: scroll;
   font-family: "Helvetica Neue LT GEO";
 }
 .section1 {
@@ -96,8 +164,13 @@ import HeroComponent from "./HeroComponent.vue";
   margin-bottom: 50px;
   display: flex;
 
+  .company-description-wrapper h1{
+    margin-top: 50px;
+  }
+
   .company-description-wrapper p {
     font-size: 14px;
+    margin-top: 20px;
   }
   .page-transfer-no-background {
     background-color: white;
@@ -125,6 +198,7 @@ import HeroComponent from "./HeroComponent.vue";
   right: 0;
 
   .wrapper {
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,13 +209,15 @@ import HeroComponent from "./HeroComponent.vue";
         font-size: 64px;
         font-weight: bold;
         position: relative;
-        bottom: 37px;
-        right: 15px;
+        // bottom: 37px;
+        // right: 15px;
       }
       .text-background {
         position: absolute;
         background-color: #ffb717;
-        bottom: 10px;
+        // bottom: 10px;
+        top: 98px;
+        margin-left: 10px;
         padding: 1px;
 
         p {
@@ -157,6 +233,9 @@ import HeroComponent from "./HeroComponent.vue";
   margin-left: 70px;
   display: flex;
 
+  .text-wrapper p {
+    margin-top: 20px;
+  }
   h1 {
     font-size: 24px;
   }
@@ -165,6 +244,7 @@ import HeroComponent from "./HeroComponent.vue";
     position: relative;
     cursor: pointer;
     margin: 0 20px;
+
     .text-background {
       background-color: #ffb717;
       position: absolute;
@@ -188,6 +268,44 @@ import HeroComponent from "./HeroComponent.vue";
     font-weight: bold;
     font-size: 16px;
     margin-top: 30px;
+  }
+}
+.section4 {
+  display: flex;
+  align-items: flex-start;
+  background-color: #f3f3f3;
+  left: 0;
+  right: 0;
+  margin: 50px 0;
+  position: relative;
+  left: 0;
+  right: 0;
+  padding-bottom: 50px;
+  .accordion-wrapper {
+    margin-top: 50px;
+    width: 70%;
+  }
+  .img-wrapper {
+    margin-left: 70px;
+    position: sticky;
+    h1 {
+      font-size: 26px;
+      color: #242424;
+      margin-top: 50px;
+    }
+    img {
+      margin-top: 20px;
+    }
+  }
+}
+.logo-section {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  .img-wrapper {
+    img {
+      margin: 0 90px;
+    }
   }
 }
 </style>
