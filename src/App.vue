@@ -1,15 +1,16 @@
 <script setup>
-import MainComponent from "./components/MainComponent.vue";
 </script>
 
 <template>
-  <MainComponent />
+  <RouterView />
 </template>
 
-<style scoped>
+<style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Helvetica Neue LT GEO";
+  text-transform: uppercase;
 }
 </style>

@@ -123,6 +123,18 @@ const AccordionList = [
       <img src="/Tetraqtis-samushaoebi.jpg" alt="" />
       <div class="text-background">ტეტრაქტის სამუშაოები</div>
     </div>
+
+  </section>
+  <section class="logo-section">
+    <h1>ჩვენ გვენდობიან</h1>
+    <div class="img-wrapper">
+      <img src="/company-partner-logo-1.jpg" alt="" />
+      <img src="/company-partner-logo-2.jpg" alt="" />
+      <img src="/company-partner-logo-3.jpg" alt="" />
+      <img src="/company-partner-logo-4.jpg" alt="" />
+      <img src="/company-partner-logo-5.jpg" alt="" />
+      <img src="/company-partner-logo-6.jpg" alt="" />
+    </div>
   </section>
   <section class="section4">
     <div class="img-wrapper">
@@ -138,34 +150,26 @@ const AccordionList = [
       />
     </div>
   </section>
-  <section class="logo-section">
-    <div class="img-wrapper">
-      <img src="/Logo1.jpg" alt="" />
-      <img src="/Logo2.jpg" alt="" />
-      <img src="/Logo3.jpg" alt="" />
-      <img src="/Logo4.jpg" alt="" />
-    </div>
-  </section>
+
   <Footer />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-:root {
   font-family: "Helvetica Neue LT GEO";
 }
 .section1 {
-  margin-top: 350px;
+  margin-top: 50px;
   margin-left: 70px;
   margin-bottom: 50px;
   display: flex;
 
   .company-description-wrapper h1{
     margin-top: 50px;
+    color: #242424;
   }
 
   .company-description-wrapper p {
@@ -196,6 +200,7 @@ const AccordionList = [
   position: absolute;
   left: 0;
   right: 0;
+  color: #242424;
 
   .wrapper {
     margin-top: 40px;
@@ -238,6 +243,7 @@ const AccordionList = [
   }
   h1 {
     font-size: 24px;
+    color: #242424;
   }
 
   .img-subwrapper {
@@ -301,10 +307,19 @@ const AccordionList = [
 .logo-section {
   margin-top: 50px;
   display: flex;
-  justify-content: center;
+  margin-left: 70px;
+  flex-direction: column;
+
+  h1{
+    color: #242424;
+  }
   .img-wrapper {
-    img {
-      margin: 0 90px;
+    display: flex;
+    margin-top: 20px;
+
+    img{
+      opacity: .6;
+      margin-right: 90px;
     }
   }
 }
