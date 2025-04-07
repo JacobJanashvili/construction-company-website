@@ -24,7 +24,6 @@
 <style lang="scss" scoped>
 .wrapper {
   z-index: 0;
-  font-family: "Helvetica Neue LT GEO";
   width: 100%;
   height: 760px;
   background: url("/background-hero.jpg") no-repeat center center/cover;
@@ -36,11 +35,13 @@
     font-weight: 700;
     margin-left: 70px;
     top: 328px;
+
     .hero-description{
       font-size: 14px;
       font-weight: 400;
       width: 393px;
       margin-top: 16px;
+
     }
     .subwrapper {
       margin-top: 30px;

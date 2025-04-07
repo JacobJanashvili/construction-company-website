@@ -159,7 +159,7 @@ const AccordionList = [
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Helvetica Neue LT GEO";
+
 }
 .section1 {
   margin-top: 50px;
@@ -207,13 +207,17 @@ const AccordionList = [
     display: flex;
     justify-content: center;
     align-items: center;
+
     .subwrapper {
       margin: 0 100px;
       bottom: 10px;
+
       .number {
         font-size: 64px;
         font-weight: bold;
         position: relative;
+
+
         // bottom: 37px;
         // right: 15px;
       }
@@ -224,6 +228,7 @@ const AccordionList = [
         top: 98px;
         margin-left: 10px;
         padding: 1px;
+
 
         p {
           font-weight: 400;
@@ -240,6 +245,7 @@ const AccordionList = [
 
   .text-wrapper p {
     margin-top: 20px;
+    font-size: 14px;
   }
   h1 {
     font-size: 24px;

@@ -3,9 +3,21 @@
   <menu>
     <img class="header-logo" src="/logo.jpg" alt="" />
     <ul>
-      <li :class="{'active': $route.path == '/'}" @click="$router.push('/')">მთავარი</li>
-      <li :class="{'active': $route.path == '/about'}" @click="$router.push('/about')">ჩვენს შესახებ</li>
-      <li>პროექტები</li>
+      <li :class="{ active: $route.path == '/' }" @click="$router.push('/')">
+        მთავარი
+      </li>
+      <li
+        :class="{ active: $route.path == '/about' }"
+        @click="$router.push('/about')"
+      >
+        ჩვენს შესახებ
+      </li>
+      <li
+        :class="{ active: $route.path == '/projects' }"
+        @click="$router.push('/projects')"
+      >
+        პროექტები
+      </li>
       <li>კონტაქტი</li>
     </ul>
     <div class="language-select"></div>
@@ -14,7 +26,6 @@
 <style lang="scss" scoped>
 :root {
   overflow: hidden;
-
 }
 menu {
   z-index: 1;
@@ -29,6 +40,7 @@ menu {
   align-items: center;
   background-color: #fffeff;
   height: 90px;
+
   .header-logo {
     height: 48px;
     position: relative;
@@ -61,11 +73,11 @@ menu {
     li:hover {
       text-shadow: 0px 0px 0px #242424;
     }
-    li.active{
+    li.active {
       text-shadow: 0px 0px 0px #242424;
       pointer-events: none;
     }
-    li.active::after{
+    li.active::after {
       content: "";
       background-color: black;
       height: 2px;
