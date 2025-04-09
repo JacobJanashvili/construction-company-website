@@ -1,4 +1,7 @@
 <script setup>
+import 'swiper/css';
+import 'swiper/css/navigation';
+
 </script>
 
 <template>

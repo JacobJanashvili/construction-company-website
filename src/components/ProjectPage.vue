@@ -130,4 +130,5 @@ const items = ref([
   <HeaderComponent />
   <Carousel :Items="items" />
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>
