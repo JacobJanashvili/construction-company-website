@@ -19,8 +19,8 @@ import 'swiper/css/navigation';
   font-family: "Helvetica";
   src:
     local("Helvetica"),
-    url("./assets/fonts/Helvetica Neue LT GEO 65 Medium.ttf") format("opentype"),
-    url("./assets/fonts/Helvetica Neue LT GEO 65 Medium.ttf") format("woff");
+    url("./assets/fonts/helvetica-neue-lt-geo-75-bold-caps.ttf") format("opentype"),
+    url("./assets/fonts/helvetica-neue-lt-geo-75-bold-caps.ttf") format("woff");
 }
 
 </style>

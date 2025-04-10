@@ -14,7 +14,7 @@ onMounted(() => {
   swiperInstances.value = props.Items.map((_, index) => {
     return new Swiper(`.swiper-${index}`, {
       modules: [Navigation],
-      slidesPerView: 3,
+      slidesPerView: 2.8,
       spaceBetween: 10,
       navigation: {
         nextEl: `.nextButton-${index}`,
@@ -27,12 +27,30 @@ onMounted(() => {
 
 <template>
   <div class="wrapper">
-    <div class="item" v-for="(carousel, index) in props.Items" :key="carousel.id">
+    <div
+      class="item"
+      v-for="(carousel, index) in props.Items"
+      :key="carousel.id"
+    >
       <div class="item_subwrapper">
         <h1 class="title">{{ carousel.title }}</h1>
         <p class="description">{{ carousel.description }}</p>
-        <button class="prevButton" :class="'prevButton-' + index" @click="swiperInstances[index]?.slidePrev()">← Prev</button>
-        <button class="nextButton" :class="'nextButton-' + index" @click="swiperInstances[index]?.slideNext()">Next →</button>
+        <div class="button-div">
+          <a
+            class="prevButton arrowWrapper"
+            :class="'prevButton-' + index"
+            @click="swiperInstances[index]?.slidePrev()"
+          >
+            <img id="arrow" src="/fi-rr-arrow-left.svg" alt="" />
+          </a>
+          <a
+            class="nextButton arrowWrapper"
+            :class="'nextButton-' + index"
+            @click="swiperInstances[index]?.slideNext()"
+          >
+            <img id="arrow" src="/fi-rr-arrow-right.svg" alt="" />
+          </a>
+        </div>
       </div>
       <div class="swiper" :class="'swiper-' + index">
         <div class="swiper-wrapper">
@@ -50,9 +68,8 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.swiper{
+.swiper {
   width: 100%;
-
 }
 
 .fade-enter-active,
@@ -76,7 +93,7 @@ onMounted(() => {
       margin-right: 20px;
       width: 310px;
 
-      h1{
+      h1 {
         font-size: 24px;
       }
       p {
@@ -84,17 +101,38 @@ onMounted(() => {
         margin-bottom: 20px;
         width: 310px;
         word-wrap: break-word;
+        color: #5b5b5b;
       }
     }
   }
-
-    img {
-      height: 366px;
-      width: 100%;
-      object-fit: cover;
-      object-position: bottom center;
-
+  .button-div {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    .arrowWrapper {
+      margin: 0 10px;
+      display: block;
     }
-
+    .arrowWrapper:hover {
+      background-color: #ffb717;
+      transition: 0.3s ease-out;
+      #arrow {
+        filter: brightness(0) saturate(100%) invert(87%) sepia(66%) saturate(0%)
+          hue-rotate(232deg) brightness(107%) contrast(101%);
+      }
+    }
+    #arrow {
+      height: auto;
+      padding: 13px;
+      border: 1px solid #ffb717;
+      cursor: pointer;
+      display: block;
+    }
+  }
+  img {
+    height: 366px;
+    width: 100%;
+    object-fit: cover;
+  }
 }
 </style>
