@@ -1,20 +1,61 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import Swiper from "swiper";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch, nextTick } from "vue";
 import { Navigation } from "swiper/modules";
 const swiperInstances = ref([]); // To store each swiper instance
 
 const props = defineProps({
   Items: Array,
 });
+const totalLength = ref(props.Items.length);
+const pageNumbers = ref([]);
+const itemsPerPage = ref(7);
+const currentPage = ref(1);
+const indexOfLastPage = ref();
+const indexOfFirstPage = ref();
+const currentItems = ref();
+indexOfFirstPage.value = indexOfLastPage.value - itemsPerPage.value;
+indexOfLastPage.value = currentPage.value * itemsPerPage.value;
+currentItems.value = props.Items.slice(
+  indexOfFirstPage.value,
+  indexOfLastPage.value
+);
+for (let i = 1; i <= Math.ceil(totalLength.value / itemsPerPage.value); i++) {
+  pageNumbers.value.push(i);
+}
+const goToPage = (page) => {
+  currentPage.value = page;
+  indexOfLastPage.value = currentPage.value * itemsPerPage.value;
+  indexOfFirstPage.value = indexOfLastPage.value - itemsPerPage.value;
+  currentItems.value = props.Items.slice(
+    indexOfFirstPage.value,
+    indexOfLastPage.value
+  );
+};
 
 onMounted(() => {
   // Initialize Swiper for each item
   swiperInstances.value = props.Items.map((_, index) => {
     return new Swiper(`.swiper-${index}`, {
       modules: [Navigation],
-      slidesPerView: 2.8,
+      slidesPerView: 3,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: `.nextButton-${index}`,
+        prevEl: `.prevButton-${index}`,
+      },
+    });
+  });
+});
+
+watch(currentItems, async () => {
+  await nextTick(); // Wait for DOM update
+
+  swiperInstances.value = currentItems.value.map((_, index) => {
+    return new Swiper(`.swiper-${index}`, {
+      modules: [Navigation],
+      slidesPerView: 3,
       spaceBetween: 10,
       navigation: {
         nextEl: `.nextButton-${index}`,
@@ -29,7 +70,7 @@ onMounted(() => {
   <div class="wrapper">
     <div
       class="item"
-      v-for="(carousel, index) in props.Items"
+      v-for="(carousel, index) in currentItems"
       :key="carousel.id"
     >
       <div class="item_subwrapper">
@@ -64,6 +105,17 @@ onMounted(() => {
         </div>
       </div>
     </div>
+    <div class="pagination_wrapper">
+      <div
+        class="pageNumber"
+        :class="{ active: currentPage === page }"
+        @click="goToPage(page)"
+        v-for="page in pageNumbers"
+        :key="page"
+      >
+        <p>{{ page }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -85,9 +137,11 @@ onMounted(() => {
 .wrapper {
   margin-top: 150px;
   margin-left: 70px;
+
   .item {
     display: flex;
     margin-bottom: 40px;
+    font-family: "Helvetica";
 
     .item_subwrapper {
       margin-right: 20px;
@@ -133,6 +187,30 @@ onMounted(() => {
     height: 366px;
     width: 100%;
     object-fit: cover;
+  }
+}
+.pagination_wrapper {
+  display: flex;
+  justify-content: center;
+
+  .pageNumber {
+    margin-right: 10px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ffb717;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-family: "Helvetica-light";
+  }
+  .pageNumber:hover {
+    background-color: #ffb717;
+    transition: 0.3s ease-out;
+  }
+  .active {
+    background-color: #ffb717;
   }
 }
 </style>

@@ -40,6 +40,8 @@ menu {
   align-items: center;
   background-color: #fffeff;
   height: 90px;
+  font-family: "Helvetica";
+
 
   .header-logo {
     height: 48px;
