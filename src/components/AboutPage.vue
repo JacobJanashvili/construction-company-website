@@ -1,7 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import HeaderComponent from "./HeaderComponent.vue";
-import Footer from "./Footer.vue";
+import { defineAsyncComponent } from "vue";
+const HeaderComponent = defineAsyncComponent(() =>
+  import("./HeaderComponent.vue")
+);
+const Footer = defineAsyncComponent(() => import("./Footer.vue"));
 </script>
 <template>
   <HeaderComponent />
@@ -42,7 +45,10 @@ import Footer from "./Footer.vue";
           გათბობა-კონდიცირებისა და ვენტილაციის, ხანძარქრობის სისტემების
           პროექტირება და განხირციელება;
         </li>
-        <li>წყლის მოწოდების და გამწმენდი/სატუმბი მინი-სადგურების პროექტირება, მონტაჟი და გაშევბა;</li>
+        <li>
+          წყლის მოწოდების და გამწმენდი/სატუმბი მინი-სადგურების პროექტირება,
+          მონტაჟი და გაშევბა;
+        </li>
       </ul>
     </div>
   </div>
@@ -59,6 +65,7 @@ import Footer from "./Footer.vue";
       font-size: 48px;
       color: #242424;
       margin-left: 21px;
+      font-family: "Helvetica";
     }
 
     p {
@@ -66,10 +73,13 @@ import Footer from "./Footer.vue";
       margin-left: 20px;
       padding-right: 70px;
       text-align: justify;
+      font-family: "Helvetica-light";
     }
     ul {
       margin-left: 35px;
-      li{
+      font-family: "Helvetica-light";
+
+      li {
         margin: 10px 0;
       }
     }

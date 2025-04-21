@@ -1,8 +1,11 @@
 <script setup>
-import HeaderComponent from "./HeaderComponent.vue";
-import HeroComponent from "./HeroComponent.vue";
-import Accordion from "./Accordion.vue";
-import Footer from "./Footer.vue";
+import { defineAsyncComponent } from "vue";
+const HeaderComponent = defineAsyncComponent(() =>
+  import("./HeaderComponent.vue")
+);
+const Footer = defineAsyncComponent(() => import("./Footer.vue"));
+const HeroComponent = defineAsyncComponent(() => import("./HeroComponent.vue"));
+const Accordion = defineAsyncComponent(() => import("./Accordion.vue"));
 const AccordionList = [
   {
     id: 0,
@@ -123,7 +126,6 @@ const AccordionList = [
       <img src="/Tetraqtis-samushaoebi.jpg" alt="" />
       <div class="text-background">ტეტრაქტის სამუშაოები</div>
     </div>
-
   </section>
   <section class="logo-section">
     <h1>ჩვენ გვენდობიან</h1>
@@ -159,15 +161,14 @@ const AccordionList = [
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 .section1 {
   margin-top: 50px;
   margin-left: 70px;
   margin-bottom: 50px;
   display: flex;
-
-  .company-description-wrapper h1{
+  font-family: "Helvetica";
+  .company-description-wrapper h1 {
     margin-top: 50px;
     color: #242424;
   }
@@ -175,6 +176,7 @@ const AccordionList = [
   .company-description-wrapper p {
     font-size: 14px;
     margin-top: 20px;
+    color: #5b5b5b;
   }
   .page-transfer-no-background {
     background-color: white;
@@ -196,39 +198,34 @@ const AccordionList = [
 .section2 {
   background-color: #ffb717;
   width: 100%;
-  height: 150px;
   position: absolute;
   left: 0;
   right: 0;
   color: #242424;
+  font-family: "Helvetica";
+  display: flex;
+  justify-content: center;
 
   .wrapper {
     margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    position: relative;
+    bottom: 20px;
     .subwrapper {
       margin: 0 100px;
-      bottom: 10px;
-
       .number {
         font-size: 64px;
         font-weight: bold;
         position: relative;
-
-
-        // bottom: 37px;
-        // right: 15px;
       }
       .text-background {
         position: absolute;
         background-color: #ffb717;
-        // bottom: 10px;
-        top: 98px;
-        margin-left: 10px;
-        padding: 1px;
-
+        top: 70%;
+        margin-left: 8px;
+        width: 300px;
 
         p {
           font-weight: 400;
@@ -242,10 +239,12 @@ const AccordionList = [
   margin-top: 250px;
   margin-left: 70px;
   display: flex;
+  font-family: "Helvetica";
 
   .text-wrapper p {
     margin-top: 20px;
     font-size: 14px;
+    color: #5b5b5b;
   }
   h1 {
     font-size: 24px;
@@ -293,6 +292,8 @@ const AccordionList = [
   left: 0;
   right: 0;
   padding-bottom: 50px;
+  font-family: "Helvetica";
+
   .accordion-wrapper {
     margin-top: 50px;
     width: 70%;
@@ -316,15 +317,15 @@ const AccordionList = [
   margin-left: 70px;
   flex-direction: column;
 
-  h1{
+  h1 {
     color: #242424;
   }
   .img-wrapper {
     display: flex;
     margin-top: 20px;
 
-    img{
-      opacity: .6;
+    img {
+      opacity: 0.6;
       margin-right: 90px;
     }
   }

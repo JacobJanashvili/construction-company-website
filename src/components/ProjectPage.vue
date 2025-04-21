@@ -1,19 +1,40 @@
 <script setup>
-import HeaderComponent from "./HeaderComponent.vue";
-import Carousel from "./Carousel.vue";
-import { ref } from "vue";
+import { ref, defineAsyncComponent } from "vue";
+const HeaderComponent = defineAsyncComponent(() =>
+  import("./HeaderComponent.vue")
+);
+const Carousel = defineAsyncComponent(() => import("./Carousel.vue"));
+const Footer = defineAsyncComponent(() => import("./Footer.vue"));
 const items = ref([
   {
     id: 1,
     title: "ახალციხე",
     date: "24 June 2014",
     images: [
-      "/Axalcixe-slides/slide1.jpg",
-      "/Axalcixe-slides/slide2.jpg",
-      "/Axalcixe-slides/slide3.jpg",
-      "/Axalcixe-slides/slide4.jpg",
-      "/Axalcixe-slides/slide5.jpg",
-      "/Axalcixe-slides/slide6.jpg",
+      {
+        full: "/Axalcixe-slides/slide1.jpg",
+        thumb: "/thumb/akhaltsikhe-thumb.jpg",
+      },
+      {
+        full: "/Axalcixe-slides/slide2.jpg",
+        thumb: "/thumb/akhaltsikhe-thumb-2.jpg",
+      },
+      {
+        full: "/Axalcixe-slides/slide3.jpg",
+        thumb: "/thumb/akhaltsikhe-thumb-3.jpg",
+      },
+      {
+        full: "/Axalcixe-slides/slide4.jpg",
+        thumb: "/thumb/akhaltsikhe-thumb-4.jpg",
+      },
+      {
+        full: "/Axalcixe-slides/slide5.jpg",
+        thumb: "/thumb/akhaltsikhe-thumb-5.jpg",
+      },
+      {
+        full: "/Axalcixe-slides/slide6.jpg",
+        thumb: "/thumb/akhaltsikhe-thumb-6.jpg",
+      },
     ],
     description:
       "Ribbon Cutting was attended by: Minister of Internal Affairs (MIA) – Mr. Chikaidze; Head of the MIA Border Police of Georgia General-Major Gamezardashvili; Minister of Finance; US Ambassador Richard Norland; EXBS/ Ms. Julia Claus and Mr. John Curren; DITRA; USACE / Ms. Gwendolyn Nelson; Local Government members; Media.",
@@ -23,10 +44,22 @@ const items = ref([
     title: "ბათუმის სინაგოგა",
     date: "24 June 2014",
     images: [
-      "/Batumi-Synagogue/slide1.jpg",
-      "/Batumi-Synagogue/slide2.jpg",
-      "/Batumi-Synagogue/slide3.jpg",
-      "/Batumi-Synagogue/slide4.jpg",
+      {
+        full: "/Batumi-Synagogue/slide1.jpg",
+        thumb: "/thumb/batumi-thumb.jpg",
+      },
+      {
+        full: "/Batumi-Synagogue/slide2.jpg",
+        thumb: "/thumb/batumi-thumb2.jpg",
+      },
+      {
+        full: "/Batumi-Synagogue/slide3.jpg",
+        thumb: "/thumb/batumi-thumb3.jpg",
+      },
+      {
+        full: "/Batumi-Synagogue/slide4.jpg",
+        thumb: "/thumb/batumi-thumb4.jpg",
+      },
     ],
     description:
       "Ribbon Cutting was attended by: Minister of Internal Affairs (MIA) – Mr. Chikaidze; Head of the MIA Border Police of Georgia General-Major Gamezardashvili; Minister of Finance; US Ambassador Richard Norland; EXBS/ Ms. Julia Claus and Mr. John Curren; DITRA; USACE / Ms. Gwendolyn Nelson; Local Government members; Media.",
@@ -36,16 +69,42 @@ const items = ref([
     title: "გამშვები პუნქტები",
     date: "24 June 2014",
     images: [
-      "/Gamshvebi-Punqtebi/slide1.jpg",
-      "/Gamshvebi-Punqtebi/slide2.jpg",
-      "/Gamshvebi-Punqtebi/slide3.jpg",
-      "/Gamshvebi-Punqtebi/slide4.jpg",
-      "/Gamshvebi-Punqtebi/slide5.jpg",
-      "/Gamshvebi-Punqtebi/slide6.jpg",
-      "/Gamshvebi-Punqtebi/slide7.jpg",
-      "/Gamshvebi-Punqtebi/slide8.jpg",
-      "/Gamshvebi-Punqtebi/slide9.jpg",
-
+      {
+        full: "/Gamshvebi-Punqtebi/slide1.jpg",
+        thumb: "/thumb/gamshvebi-thumb.jpg",
+      },
+      {
+        full: "/Gamshvebi-Punqtebi/slide2.jpg",
+        thumb: "/thumb/gamshvebi-thumb2.jpg",
+      },
+      {
+        full: "/Gamshvebi-Punqtebi/slide3.jpg",
+        thumb: "/thumb/gamshvebi-thumb3.jpg",
+      },
+      {
+        full: "/Gamshvebi-Punqtebi/slide4.jpg",
+        thumb: "/thumb/gamshvebi-thumb4.jpg",
+      },
+      {
+        full: "/Gamshvebi-Punqtebi/slide5.jpg",
+        thumb: "/thumb/gamshvebi-thumb5.jpg",
+      },
+      {
+        full: "/Gamshvebi-Punqtebi/slide6.jpg",
+        thumb: "/thumb/gamshvebi-thumb6.jpg",
+      },
+      {
+        full: "/Gamshvebi-Punqtebi/slide7.jpg",
+        thumb: "/thumb/gamshvebi-thumb7.jpg",
+      },
+      {
+        full: "/Gamshvebi-Punqtebi/slide8.jpg",
+        thumb: "/thumb/gamshvebi-thumb8.jpg",
+      },
+      {
+        full: "/Gamshvebi-Punqtebi/slide9.jpg",
+        thumb: "/thumb/gamshvebi-thumb9.jpg",
+      },
     ],
     description:
       "Ribbon Cutting was attended by: Minister of Internal Affairs (MIA) – Mr. Chikaidze; Head of the MIA Border Police of Georgia General-Major Gamezardashvili; Minister of Finance; US Ambassador Richard Norland; EXBS/ Ms. Julia Claus and Mr. John Curren; DITRA; USACE / Ms. Gwendolyn Nelson; Local Government members; Media.",
@@ -55,36 +114,118 @@ const items = ref([
     title: "Supsa Fusion Center Ribbon Cutting Ceremony",
     date: "24 June 2014",
     images: [
-      "/Supsa/slide1.jpg",
-      "/Supsa/slide2.jpg",
-      "/Supsa/slide3.jpg",
-      "/Supsa/slide4.jpg",
-      "/Supsa/slide5.jpg",
-      "/Supsa/slide6.jpg",
-      "/Supsa/slide7.jpg",
-      "/Supsa/slide8.jpg",
-      "/Supsa/slide9.jpg",
-      "/Supsa/slide10.jpg",
-      "/Supsa/slide11.jpg",
-      "/Supsa/slide12.jpg",
-      "/Supsa/slide13.jpg",
-      "/Supsa/slide14.jpg",
-      "/Supsa/slide15.jpg",
-      "/Supsa/slide16.jpg",
-      "/Supsa/slide17.jpg",
-      "/Supsa/slide18.jpg",
-      "/Supsa/slide19.jpg",
-      "/Supsa/slide20.jpg",
-      "/Supsa/slide21.jpg",
-      "/Supsa/slide22.jpg",
-      "/Supsa/slide23.jpg",
-      "/Supsa/slide24.jpg",
-      "/Supsa/slide25.jpg",
-      "/Supsa/slide26.jpg",
-      "/Supsa/slide27.jpg",
-      "/Supsa/slide28.jpg",
-
-
+      {
+        full: "/Supsa/slide1.jpg",
+        thumb: "/thumb/supsa-thumb (1).jpg",
+      },
+      {
+        full: "/Supsa/slide2.jpg",
+        thumb: "/thumb/supsa-thumb (2).jpg",
+      },
+      {
+        full: "/Supsa/slide3.jpg",
+        thumb: "/thumb/supsa-thumb (3).jpg",
+      },
+      {
+        full: "/Supsa/slide4.jpg",
+        thumb: "/thumb/supsa-thumb (4).jpg",
+      },
+      {
+        full: "/Supsa/slide5.jpg",
+        thumb: "/thumb/supsa-thumb (5).jpg",
+      },
+      {
+        full: "/Supsa/slide6.jpg",
+        thumb: "/thumb/supsa-thumb (6).jpg",
+      },
+      {
+        full: "/Supsa/slide7.jpg",
+        thumb: "/thumb/supsa-thumb (7).jpg",
+      },
+      {
+        full: "/Supsa/slide8.jpg",
+        thumb: "/thumb/supsa-thumb (8).jpg",
+      },
+      {
+        full: "/Supsa/slide9.jpg",
+        thumb: "/thumb/supsa-thumb (9).jpg",
+      },
+      {
+        full: "/Supsa/slide10.jpg",
+        thumb: "/thumb/supsa-thumb (10).jpg",
+      },
+      {
+        full: "/Supsa/slide11.jpg",
+        thumb: "/thumb/supsa-thumb (11).jpg",
+      },
+      {
+        full: "/Supsa/slide12.jpg",
+        thumb: "/thumb/supsa-thumb (12).jpg",
+      },
+      {
+        full: "/Supsa/slide13.jpg",
+        thumb: "/thumb/supsa-thumb (13).jpg",
+      },
+      {
+        full: "/Supsa/slide14.jpg",
+        thumb: "/thumb/supsa-thumb (14).jpg",
+      },
+      {
+        full: "/Supsa/slide15.jpg",
+        thumb: "/thumb/supsa-thumb (15).jpg",
+      },
+      {
+        full: "/Supsa/slide16.jpg",
+        thumb: "/thumb/supsa-thumb (16).jpg",
+      },
+      {
+        full: "/Supsa/slide17.jpg",
+        thumb: "/thumb/supsa-thumb (17).jpg",
+      },
+      {
+        full: "/Supsa/slide18.jpg",
+        thumb: "/thumb/supsa-thumb (18).jpg",
+      },
+      {
+        full: "/Supsa/slide19.jpg",
+        thumb: "/thumb/supsa-thumb (19).jpg",
+      },
+      {
+        full: "/Supsa/slide20.jpg",
+        thumb: "/thumb/supsa-thumb (20).jpg",
+      },
+      {
+        full: "/Supsa/slide21.jpg",
+        thumb: "/thumb/supsa-thumb (21).jpg",
+      },
+      {
+        full: "/Supsa/slide22.jpg",
+        thumb: "/thumb/supsa-thumb (22).jpg",
+      },
+      {
+        full: "/Supsa/slide23.jpg",
+        thumb: "/thumb/supsa-thumb (23).jpg",
+      },
+      {
+        full: "/Supsa/slide24.jpg",
+        thumb: "/thumb/supsa-thumb (24).jpg",
+      },
+      {
+        full: "/Supsa/slide25.jpg",
+        thumb: "/thumb/supsa-thumb (25).jpg",
+      },
+      {
+        full: "/Supsa/slide26.jpg",
+        thumb: "/thumb/supsa-thumb (26).jpg",
+      },
+      {
+        full: "/Supsa/slide27.jpg",
+        thumb: "/thumb/supsa-thumb (27).jpg",
+      },
+      {
+        full: "/Supsa/slide28.jpg",
+        thumb: "/thumb/supsa-thumb (28).jpg",
+      },
     ],
     description:
       "Ribbon Cutting was attended by: Minister of Internal Affairs (MIA) – Mr. Chikaidze; Head of the MIA Border Police of Georgia General-Major Gamezardashvili; Minister of Finance; US Ambassador Richard Norland; EXBS/ Ms. Julia Claus and Mr. John Curren; DITRA; USACE / Ms. Gwendolyn Nelson; Local Government members; Media.",
@@ -123,7 +264,6 @@ const items = ref([
       "/Sarpi/slide9.JPG",
       "/Sarpi/slide10.JPG",
       "/Sarpi/slide11.JPG",
-
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -141,7 +281,6 @@ const items = ref([
       "/Pat-Laborat/slide6.jpg",
       "/Pat-Laborat/slide7.jpg",
       "/Pat-Laborat/slide8.jpg",
-
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -159,7 +298,6 @@ const items = ref([
       "/Tetraqti/slide6.jpg",
       "/Tetraqti/slide7.jpg",
       "/Tetraqti/slide8.jpg",
-
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -183,7 +321,6 @@ const items = ref([
       "/DedoflisWyaro/slide12.jpg",
       "/DedoflisWyaro/slide13.jpg",
       "/DedoflisWyaro/slide14.jpg",
-
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -231,7 +368,6 @@ const items = ref([
       "/Gldani/slide13.jpg",
       "/Gldani/slide14.jpg",
       "/Gldani/slide15.jpg",
-
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -253,10 +389,6 @@ const items = ref([
       "/Tongi/slide10.jpg",
       "/Tongi/slide11.jpg",
       "/Tongi/slide12.jpg",
-      "/Tongi/slide13.jpg",
-      "/Tongi/slide14.jpg",
-      "/Tongi/slide15.jpg",
-
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -275,7 +407,7 @@ const items = ref([
       "/Karaleti/slide7.jpg",
       "/Karaleti/slide8.jpg",
       "/Karaleti/slide9.jpg",
-      "/Karaleti/slide10.jpg"
+      "/Karaleti/slide10.jpg",
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -297,11 +429,10 @@ const items = ref([
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
   },
 ]);
-
 </script>
 <template>
   <HeaderComponent />
   <Carousel :Items="items" />
+  <Footer />
 </template>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

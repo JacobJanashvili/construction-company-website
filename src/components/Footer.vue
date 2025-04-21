@@ -23,6 +23,8 @@
   width: 100%;
   min-height: 19vh;
   background-color: #141515;
+  font-family: "Helvetica";
+
   .footer-full-height {
     margin-top: 450px;
   }

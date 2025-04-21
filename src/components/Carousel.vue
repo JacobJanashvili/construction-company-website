@@ -1,22 +1,67 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import Swiper from "swiper";
-import { ref, onMounted, watch, nextTick } from "vue";
+import { ref, onMounted, watch, nextTick, defineAsyncComponent, computed } from "vue";
 import { Navigation } from "swiper/modules";
-const swiperInstances = ref([]); // To store each swiper instance
+const swiperInstances = ref([]);
+const Gallery = defineAsyncComponent(() => import("primevue/galleria"));
 
 const props = defineProps({
   Items: Array,
 });
+
+const responsiveOptions = [
+  {
+    breakpoint: "1024px",
+    numVisible: 3,
+  },
+  {
+    breakpoint: "768px",
+    numVisible: 2,
+  },
+  {
+    breakpoint: "560px",
+    numVisible: 1,
+  },
+];
+
+const isLoading = ref(false);
 const totalLength = ref(props.Items.length);
 const pageNumbers = ref([]);
 const itemsPerPage = ref(7);
 const currentPage = ref(1);
-const indexOfLastPage = ref();
-const indexOfFirstPage = ref();
-const currentItems = ref();
-indexOfFirstPage.value = indexOfLastPage.value - itemsPerPage.value;
-indexOfLastPage.value = currentPage.value * itemsPerPage.value;
+const indexOfLastPage = ref(currentPage.value * itemsPerPage.value);
+const indexOfFirstPage = ref(indexOfLastPage.value - itemsPerPage.value);
+const currentItems = ref([]);
+
+const galleriaData = computed(() =>
+  currentItems.value.map(location => {
+    const galleriaItems = location.images.map(imgObj => ({
+      itemImageSrc: imgObj.full,
+      thumbnailImageSrc: imgObj.thumb,
+      alt: `${location.title} სლაიდი`,
+      title: location.title
+    }));
+    return {
+      ...location,
+      galleriaItems
+    };
+  })
+);
+
+// Galleria State
+const isGalleryVisible = ref(false);
+const selectedImages = ref([]);
+const openGallery = (index) => {
+  selectedImages.value = galleriaData.value[index]?.galleriaItems || [];
+  isGalleryVisible.value = true;
+};
+const closeGallery = () => {
+  isGalleryVisible.value = false;
+  selectedImages.value = [];
+};
+
+// Pagination Setup
 currentItems.value = props.Items.slice(
   indexOfFirstPage.value,
   indexOfLastPage.value
@@ -24,7 +69,10 @@ currentItems.value = props.Items.slice(
 for (let i = 1; i <= Math.ceil(totalLength.value / itemsPerPage.value); i++) {
   pageNumbers.value.push(i);
 }
-const goToPage = (page) => {
+
+const goToPage = async (page) => {
+  window.scrollTo(0, 0);
+  isLoading.value = true;
   currentPage.value = page;
   indexOfLastPage.value = currentPage.value * itemsPerPage.value;
   indexOfFirstPage.value = indexOfLastPage.value - itemsPerPage.value;
@@ -32,26 +80,23 @@ const goToPage = (page) => {
     indexOfFirstPage.value,
     indexOfLastPage.value
   );
+
+  await nextTick();
+  const images = document.querySelectorAll(".swiper-slide img");
+  const loadImages = Array.from(images).map((img) =>
+    img.complete
+      ? Promise.resolve()
+      : new Promise((resolve) => {
+          img.onload = img.onerror = resolve;
+        })
+  );
+  await Promise.all(loadImages);
+  initializeSwiper();
+  isLoading.value = false;
 };
 
-onMounted(() => {
-  // Initialize Swiper for each item
-  swiperInstances.value = props.Items.map((_, index) => {
-    return new Swiper(`.swiper-${index}`, {
-      modules: [Navigation],
-      slidesPerView: 3,
-      spaceBetween: 10,
-      navigation: {
-        nextEl: `.nextButton-${index}`,
-        prevEl: `.prevButton-${index}`,
-      },
-    });
-  });
-});
-
-watch(currentItems, async () => {
-  await nextTick(); // Wait for DOM update
-
+const initializeSwiper = async () => {
+  await nextTick();
   swiperInstances.value = currentItems.value.map((_, index) => {
     return new Swiper(`.swiper-${index}`, {
       modules: [Navigation],
@@ -63,13 +108,39 @@ watch(currentItems, async () => {
       },
     });
   });
+};
+
+onMounted(() => {
+  initializeSwiper();
+});
+
+watch(currentItems, async () => {
+  await nextTick();
+  const images = document.querySelectorAll(".swiper-slide img");
+  const loadImages = Array.from(images).map((img) =>
+    img.complete
+      ? Promise.resolve()
+      : new Promise((resolve) => {
+          img.onload = img.onerror = resolve;
+        })
+  );
+  await Promise.all(loadImages);
+  initializeSwiper();
+  isLoading.value = false;
 });
 </script>
 
 <template>
   <div class="wrapper">
+    <v-progress-circular
+      v-if="isLoading"
+      color="amber"
+      indeterminate
+    ></v-progress-circular>
+
     <div
       class="item"
+      v-else
       v-for="(carousel, index) in currentItems"
       :key="carousel.id"
     >
@@ -97,14 +168,48 @@ watch(currentItems, async () => {
         <div class="swiper-wrapper">
           <div
             class="swiper-slide"
+            @click="openGallery(index)"
             v-for="image in carousel.images"
-            :key="image"
+            :key="image.full"
           >
-            <img :src="image" alt="" />
+            <img class="item-img" :src="image.full" alt="" />
+            <div class="img-hover">
+              <svg class="img-hover-icon" width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path
+                  d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <Gallery
+      v-model:visible="isGalleryVisible"
+      :value="selectedImages"
+      :numVisible="4"
+      :full-screen="true"
+      :circular="true"
+      :showItemNavigators="true"
+      @hide="closeGallery"
+      :responsiveOptions="responsiveOptions"
+      containerStyle="max-width: 800px; margin: auto;"
+    >
+      <template #item="slotProps">
+        <img
+          :src="slotProps.item.itemImageSrc"
+          style="width: 798px; display: block; height: 448px; object-fit: cover;"
+        />
+      </template>
+      <template #thumbnail="slotProps">
+        <img
+          :src="slotProps.item.thumbnailImageSrc"
+          style="height: 90px;"
+        />
+      </template>
+    </Gallery>
+
     <div class="pagination_wrapper">
       <div
         class="pageNumber"
@@ -133,7 +238,9 @@ watch(currentItems, async () => {
 .fade-leave-to {
   opacity: 0;
 }
-
+.swiper-slide {
+  cursor: pointer;
+}
 .wrapper {
   margin-top: 150px;
   margin-left: 70px;
@@ -150,13 +257,30 @@ watch(currentItems, async () => {
       h1 {
         font-size: 24px;
       }
-      p {
+      .description {
         font-size: 14px;
         margin-bottom: 20px;
         width: 310px;
         word-wrap: break-word;
         color: #5b5b5b;
+        font-family: "helvetica-light";
       }
+    }
+    .item-img {
+      position: relative;
+    }
+    .img-hover {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.404);
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: translateY(100%);
+    }
+    .swiper-slide:hover .img-hover {
+      transform: translateY(-102%);
     }
   }
   .button-div {

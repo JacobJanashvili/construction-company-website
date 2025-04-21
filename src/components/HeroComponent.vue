@@ -27,7 +27,7 @@
   width: 100%;
   height: 760px;
   background: url("/background-hero.jpg") no-repeat center center/cover;
-
+  font-family: "Helvetica";
   .hero-content {
     position: relative;
     font-size: 25px;
@@ -41,7 +41,7 @@
       font-weight: 400;
       width: 393px;
       margin-top: 16px;
-
+      color: #5B5B5B;
     }
     .subwrapper {
       margin-top: 30px;
