@@ -3,7 +3,7 @@
 <template>
   <div
     class="footer-wrapper"
-    :style="{marginTop: $route.path != '/'? '110px' : ''}"
+    :style="{ marginTop: $route.path != '/' ? '110px' : '' }"
   >
     <div class="footer-subwrapper">
       <p class="footer-title">
@@ -24,6 +24,7 @@
   min-height: 19vh;
   background-color: #141515;
   font-family: "Helvetica";
+  overflow: hidden;
 
   .footer-full-height {
     margin-top: 450px;
@@ -41,12 +42,43 @@
       color: white;
       font-weight: 700;
       font-size: 24px;
+      letter-spacing: 1px;
     }
     .footer-content {
       display: flex;
 
       p {
         margin: 0 51px;
+      }
+    }
+  }
+}
+@media (min-width: 200px) and (max-width: 900px) {
+  .footer-wrapper {
+    .footer-subwrapper {
+      flex-direction: column-reverse;
+      padding: initial;
+      justify-content: initial;
+      align-items: initial;
+      .footer-title{
+        font-size: 14px;
+        font-family: "Helvetica-light";
+        margin: 22px 20px;
+
+      }
+      .footer-content {
+        flex-direction: column;
+        margin: 0 20px;
+        margin-top: 20px;
+        .title-highlight {
+          font-size: 14px;
+          margin-right: 9px;
+        }
+        p {
+          display: flex;
+          font-family: "Helvetica-light";
+          margin: 5px 0;
+        }
       }
     }
   }

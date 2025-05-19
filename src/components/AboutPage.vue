@@ -59,6 +59,7 @@ const Footer = defineAsyncComponent(() => import("./Footer.vue"));
   display: flex;
   margin-left: 70px;
   margin-top: 150px;
+
   .subwrapper {
     margin-left: 20px;
     .subwrapper-title {
@@ -81,6 +82,28 @@ const Footer = defineAsyncComponent(() => import("./Footer.vue"));
 
       li {
         margin: 10px 0;
+      }
+    }
+  }
+}
+@media (min-width: 200px) and (max-width: 900px) {
+  .wrapper {
+    flex-direction: column;
+    margin: 0;
+    overflow-x: hidden;
+    flex-wrap: wrap;
+    .subwrapper {
+      margin: initial;
+      p {
+        font-size: 14px;
+      }
+      .subwrapper-title {
+        font-size: 20px;
+        margin-top: 20px;
+      }
+      ul {
+        margin-left: 25px;
+        font-size: 14px;
       }
     }
   }

@@ -3,7 +3,12 @@ import { ref, defineAsyncComponent } from "vue";
 const HeaderComponent = defineAsyncComponent(() =>
   import("./HeaderComponent.vue")
 );
-const Carousel = defineAsyncComponent(() => import("./Carousel.vue"));
+const Carousel = defineAsyncComponent({
+  loader: () => import("./Carousel.vue"),
+
+});
+import ProgressSpinner from "primevue/progressspinner";
+
 const Footer = defineAsyncComponent(() => import("./Footer.vue"));
 const items = ref([
   {
@@ -13,27 +18,27 @@ const items = ref([
     images: [
       {
         full: "/Axalcixe-slides/slide1.jpg",
-        thumb: "/thumb/akhaltsikhe-thumb.jpg",
+        thumb: "/thumb/axalcixe-thumb (1).jpg",
       },
       {
         full: "/Axalcixe-slides/slide2.jpg",
-        thumb: "/thumb/akhaltsikhe-thumb-2.jpg",
+        thumb: "/thumb/axalcixe-thumb (2).jpg",
       },
       {
         full: "/Axalcixe-slides/slide3.jpg",
-        thumb: "/thumb/akhaltsikhe-thumb-3.jpg",
+        thumb: "/thumb/axalcixe-thumb (3).jpg",
       },
       {
         full: "/Axalcixe-slides/slide4.jpg",
-        thumb: "/thumb/akhaltsikhe-thumb-4.jpg",
+        thumb: "/thumb/axalcixe-thumb (4).jpg",
       },
       {
         full: "/Axalcixe-slides/slide5.jpg",
-        thumb: "/thumb/akhaltsikhe-thumb-5.jpg",
+        thumb: "/thumb/axalcixe-thumb (5).jpg",
       },
       {
         full: "/Axalcixe-slides/slide6.jpg",
-        thumb: "/thumb/akhaltsikhe-thumb-6.jpg",
+        thumb: "/thumb/axalcixe-thumb (6).jpg",
       },
     ],
     description:
@@ -235,15 +240,42 @@ const items = ref([
     title: "ქუთაისის სინაგოგა",
     date: "24 June 2014",
     images: [
-      "/Qutaisi/slide1.JPG",
-      "/Qutaisi/slide2.JPG",
-      "/Qutaisi/slide3.JPG",
-      "/Qutaisi/slide4.JPG",
-      "/Qutaisi/slide5.jpg",
-      "/Qutaisi/slide6.JPG",
-      "/Qutaisi/slide7.JPG",
-      "/Qutaisi/slide8.JPG",
-      "/Qutaisi/slide9.JPG",
+      {
+        full: "/Qutaisi/slide1.JPG",
+        thumb: "/thumb/qutaisi-thumb (1).JPG",
+      },
+      {
+        full: "/Qutaisi/slide2.JPG",
+        thumb: "/thumb/qutaisi-thumb (2).JPG",
+      },
+      {
+        full: "/Qutaisi/slide3.JPG",
+        thumb: "/thumb/qutaisi-thumb (3).JPG",
+      },
+      {
+        full: "/Qutaisi/slide4.JPG",
+        thumb: "/thumb/qutaisi-thumb (4).JPG",
+      },
+      {
+        full: "/Qutaisi/slide5.jpg",
+        thumb: "/thumb/qutaisi-thumb (5).JPG",
+      },
+      {
+        full: "/Qutaisi/slide6.JPG",
+        thumb: "/thumb/qutaisi-thumb (6).JPG",
+      },
+      {
+        full: "/Qutaisi/slide7.JPG",
+        thumb: "/thumb/qutaisi-thumb (7).JPG",
+      },
+      {
+        full: "/Qutaisi/slide8.JPG",
+        thumb: "/thumb/qutaisi-thumb (8).JPG",
+      },
+      {
+        full: "/Qutaisi/slide9.JPG",
+        thumb: "/thumb/qutaisi-thumb (9).JPG",
+      },
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -253,17 +285,50 @@ const items = ref([
     title: "სარფი და ვალე",
     date: "24 June 2014",
     images: [
-      "/Sarpi/slide1.JPG",
-      "/Sarpi/slide2.JPG",
-      "/Sarpi/slide3.JPG",
-      "/Sarpi/slide4.JPG",
-      "/Sarpi/slide5.JPG",
-      "/Sarpi/slide6.jpg",
-      "/Sarpi/slide7.JPG",
-      "/Sarpi/slide8.JPG",
-      "/Sarpi/slide9.JPG",
-      "/Sarpi/slide10.JPG",
-      "/Sarpi/slide11.JPG",
+      {
+        full: "/Sarpi/slide1.JPG",
+        thumb: "/thumb/sarpi-thumb (1).JPG",
+      },
+      {
+        full: "/Sarpi/slide2.JPG",
+        thumb: "/thumb/sarpi-thumb (2).JPG",
+      },
+      {
+        full: "/Sarpi/slide3.JPG",
+        thumb: "/thumb/sarpi-thumb (3).JPG",
+      },
+      {
+        full: "/Sarpi/slide4.JPG",
+        thumb: "/thumb/sarpi-thumb (4).JPG",
+      },
+      {
+        full: "/Sarpi/slide5.JPG",
+        thumb: "/thumb/sarpi-thumb (5).JPG",
+      },
+      {
+        full: "/Sarpi/slide6.jpg",
+        thumb: "/thumb/sarpi-thumb (6).JPG",
+      },
+      {
+        full: "/Sarpi/slide7.JPG",
+        thumb: "/thumb/sarpi-thumb (7).JPG",
+      },
+      {
+        full: "/Sarpi/slide8.JPG",
+        thumb: "/thumb/sarpi-thumb (8).JPG",
+      },
+      {
+        full: "/Sarpi/slide9.JPG",
+        thumb: "/thumb/sarpi-thumb (9).JPG",
+      },
+      {
+        full: "/Sarpi/slide10.JPG",
+        thumb: "/thumb/sarpi-thumb (10).JPG",
+      },
+      {
+        full: "/Sarpi/slide11.JPG",
+        thumb: "/thumb/sarpi-thumb (11).JPG",
+      },
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -273,14 +338,38 @@ const items = ref([
     title: "პათ-ლაბორატ",
     date: "24 June 2014",
     images: [
-      "/Pat-Laborat/slide1.jpg",
-      "/Pat-Laborat/slide2.jpg",
-      "/Pat-Laborat/slide3.jpg",
-      "/Pat-Laborat/slide4.jpg",
-      "/Pat-Laborat/slide5.jpg",
-      "/Pat-Laborat/slide6.jpg",
-      "/Pat-Laborat/slide7.jpg",
-      "/Pat-Laborat/slide8.jpg",
+      {
+        full: "/Pat-Laborat/slide1.jpg",
+        thumb: "/thumb/pat-thumb (1).jpg",
+      },
+      {
+        full: "/Pat-Laborat/slide2.jpg",
+        thumb: "/thumb/pat-thumb (2).jpg",
+      },
+      {
+        full: "/Pat-Laborat/slide3.jpg",
+        thumb: "/thumb/pat-thumb (3).jpg",
+      },
+      {
+        full: "/Pat-Laborat/slide4.jpg",
+        thumb: "/thumb/pat-thumb (4).jpg",
+      },
+      {
+        full: "/Pat-Laborat/slide5.jpg",
+        thumb: "/thumb/pat-thumb (5).jpg",
+      },
+      {
+        full: "/Pat-Laborat/slide6.jpg",
+        thumb: "/thumb/pat-thumb (6).jpg",
+      },
+      {
+        full: "/Pat-Laborat/slide7.jpg",
+        thumb: "/thumb/pat-thumb (7).jpg",
+      },
+      {
+        full: "/Pat-Laborat/slide8.jpg",
+        thumb: "/thumb/pat-thumb (8).JPG",
+      },
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -290,14 +379,38 @@ const items = ref([
     title: "ტეტრატექის სამუშაოები",
     date: "24 June 2014",
     images: [
-      "/Tetraqti/slide1.jpg",
-      "/Tetraqti/slide2.jpg",
-      "/Tetraqti/slide3.jpg",
-      "/Tetraqti/slide4.jpg",
-      "/Tetraqti/slide5.jpg",
-      "/Tetraqti/slide6.jpg",
-      "/Tetraqti/slide7.jpg",
-      "/Tetraqti/slide8.jpg",
+      {
+        full: "/Tetraqti/slide1.jpg",
+        thumb: "/thumb/tetraqti-thumb (1).jpg",
+      },
+      {
+        full: "/Tetraqti/slide2.jpg",
+        thumb: "/thumb/tetraqti-thumb (2).jpg",
+      },
+      {
+        full: "/Tetraqti/slide3.jpg",
+        thumb: "/thumb/tetraqti-thumb (3).jpg",
+      },
+      {
+        full: "/Tetraqti/slide4.jpg",
+        thumb: "/thumb/tetraqti-thumb (4).jpg",
+      },
+      {
+        full: "/Tetraqti/slide5.jpg",
+        thumb: "/thumb/tetraqti-thumb (5).jpg",
+      },
+      {
+        full: "/Tetraqti/slide6.jpg",
+        thumb: "/thumb/tetraqti-thumb (6).jpg",
+      },
+      {
+        full: "/Tetraqti/slide7.jpg",
+        thumb: "/thumb/tetraqti-thumb (7).jpg",
+      },
+      {
+        full: "/Tetraqti/slide8.jpg",
+        thumb: "/thumb/tetraqti-thumb (8).jpg",
+      },
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -307,20 +420,62 @@ const items = ref([
     title: "დედოფლისწყარო",
     date: "24 June 2014",
     images: [
-      "/DedoflisWyaro/slide1.jpg",
-      "/DedoflisWyaro/slide2.jpg",
-      "/DedoflisWyaro/slide3.jpg",
-      "/DedoflisWyaro/slide4.jpg",
-      "/DedoflisWyaro/slide5.jpg",
-      "/DedoflisWyaro/slide6.jpg",
-      "/DedoflisWyaro/slide7.jpg",
-      "/DedoflisWyaro/slide8.jpg",
-      "/DedoflisWyaro/slide9.jpg",
-      "/DedoflisWyaro/slide10.jpg",
-      "/DedoflisWyaro/slide11.jpg",
-      "/DedoflisWyaro/slide12.jpg",
-      "/DedoflisWyaro/slide13.jpg",
-      "/DedoflisWyaro/slide14.jpg",
+      {
+        full: "/DedoflisWyaro/slide1.jpg",
+        thumb: "/thumb/dedoflis-thumb (1).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide2.jpg",
+        thumb: "/thumb/dedoflis-thumb (2).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide3.jpg",
+        thumb: "/thumb/dedoflis-thumb (3).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide4.jpg",
+        thumb: "/thumb/dedoflis-thumb (4).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide5.jpg",
+        thumb: "/thumb/dedoflis-thumb (5).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide6.jpg",
+        thumb: "/thumb/dedoflis-thumb (6).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide7.jpg",
+        thumb: "/thumb/dedoflis-thumb (7).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide8.jpg",
+        thumb: "/thumb/dedoflis-thumb (8).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide9.jpg",
+        thumb: "/thumb/dedoflis-thumb (9).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide10.jpg",
+        thumb: "/thumb/dedoflis-thumb (10).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide11.jpg",
+        thumb: "/thumb/dedoflis-thumb (11).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide12.jpg",
+        thumb: "/thumb/dedoflis-thumb (12).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide13.jpg",
+        thumb: "/thumb/dedoflis-thumb (13).jpg",
+      },
+      {
+        full: "/DedoflisWyaro/slide14.jpg",
+        thumb: "/thumb/dedoflis-thumb (14).jpg",
+      },
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -330,20 +485,62 @@ const items = ref([
     title: "თავშესაფარი",
     date: "24 June 2014",
     images: [
-      "/Tavshesapari/slide1.jpg",
-      "/Tavshesapari/slide2.jpg",
-      "/Tavshesapari/slide3.jpg",
-      "/Tavshesapari/slide4.jpg",
-      "/Tavshesapari/slide5.jpg",
-      "/Tavshesapari/slide6.jpg",
-      "/Tavshesapari/slide7.jpg",
-      "/Tavshesapari/slide8.jpg",
-      "/Tavshesapari/slide9.jpg",
-      "/Tavshesapari/slide10.jpg",
-      "/Tavshesapari/slide11.jpg",
-      "/Tavshesapari/slide12.jpg",
-      "/Tavshesapari/slide13.jpg",
-      "/Tavshesapari/slide14.jpg",
+      {
+        full: "/Tavshesapari/slide1.jpg",
+        thumb: "/thumb/tavshesafari-thumb (1).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide2.jpg",
+        thumb: "/thumb/tavshesafari-thumb (2).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide3.jpg",
+        thumb: "/thumb/tavshesafari-thumb (3).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide4.jpg",
+        thumb: "/thumb/tavshesafari-thumb (4).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide5.jpg",
+        thumb: "/thumb/tavshesafari-thumb (5).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide6.jpg",
+        thumb: "/thumb/tavshesafari-thumb (6).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide7.jpg",
+        thumb: "/thumb/tavshesafari-thumb (7).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide8.jpg",
+        thumb: "/thumb/tavshesafari-thumb (8).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide9.jpg",
+        thumb: "/thumb/tavshesafari-thumb (9).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide10.jpg",
+        thumb: "/thumb/tavshesafari-thumb (10).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide11.jpg",
+        thumb: "/thumb/tavshesafari-thumb (11).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide12.jpg",
+        thumb: "/thumb/tavshesafari-thumb (12).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide13.jpg",
+        thumb: "/thumb/tavshesafari-thumb (13).jpg",
+      },
+      {
+        full: "/Tavshesapari/slide14.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -353,21 +550,62 @@ const items = ref([
     title: "გლდანი",
     date: "24 June 2014",
     images: [
-      "/Gldani/slide1.jpg",
-      "/Gldani/slide2.jpg",
-      "/Gldani/slide3.jpg",
-      "/Gldani/slide4.jpg",
-      "/Gldani/slide5.jpg",
-      "/Gldani/slide6.jpg",
-      "/Gldani/slide7.jpg",
-      "/Gldani/slide8.jpg",
-      "/Gldani/slide9.jpg",
-      "/Gldani/slide10.jpg",
-      "/Gldani/slide11.jpg",
-      "/Gldani/slide12.jpg",
-      "/Gldani/slide13.jpg",
-      "/Gldani/slide14.jpg",
-      "/Gldani/slide15.jpg",
+      {
+        full: "/Gldani/slide1.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide2.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide3.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide4.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide5.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide6.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide7.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide8.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide9.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide10.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide11.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide12.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide13.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
+      {
+        full: "/Gldani/slide14.jpg",
+        thumb: "/thumb/tavshesafari-thumb (14).jpg",
+      },
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -377,18 +615,54 @@ const items = ref([
     title: "ტონგი",
     date: "24 June 2014",
     images: [
-      "/Tongi/slide1.jpg",
-      "/Tongi/slide2.jpg",
-      "/Tongi/slide3.jpg",
-      "/Tongi/slide4.jpg",
-      "/Tongi/slide5.jpg",
-      "/Tongi/slide6.jpg",
-      "/Tongi/slide7.jpg",
-      "/Tongi/slide8.jpg",
-      "/Tongi/slide9.jpg",
-      "/Tongi/slide10.jpg",
-      "/Tongi/slide11.jpg",
-      "/Tongi/slide12.jpg",
+      {
+        full: "/Tongi/slide1.jpg",
+        thumb: "/thumb/tong-thumb (1).jpg",
+      },
+      {
+        full: "/Tongi/slide2.jpg",
+        thumb: "/thumb/tong-thumb (2).jpg",
+      },
+      {
+        full: "/Tongi/slide3.jpg",
+        thumb: "/thumb/tong-thumb (3).jpg",
+      },
+      {
+        full: "/Tongi/slide4.jpg",
+        thumb: "/thumb/tong-thumb (4).jpg",
+      },
+      {
+        full: "/Tongi/slide5.jpg",
+        thumb: "/thumb/tong-thumb (5).jpg",
+      },
+      {
+        full: "/Tongi/slide6.jpg",
+        thumb: "/thumb/tong-thumb (6).jpg",
+      },
+      {
+        full: "/Tongi/slide7.jpg",
+        thumb: "/thumb/tong-thumb (7).jpg",
+      },
+      {
+        full: "/Tongi/slide8.jpg",
+        thumb: "/thumb/tong-thumb (8).jpg",
+      },
+      {
+        full: "/Tongi/slide9.jpg",
+        thumb: "/thumb/tong-thumb (9).jpg",
+      },
+      {
+        full: "/Tongi/slide10.jpg",
+        thumb: "/thumb/tong-thumb (10).jpg",
+      },
+      {
+        full: "/Tongi/slide11.jpg",
+        thumb: "/thumb/tong-thumb (11).jpg",
+      },
+      {
+        full: "/Tongi/slide12.jpg",
+        thumb: "/thumb/tong-thumb (12).jpg",
+      },
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -398,16 +672,46 @@ const items = ref([
     title: "კარალეთი",
     date: "24 June 2014",
     images: [
-      "/Karaleti/slide1.jpg",
-      "/Karaleti/slide2.jpg",
-      "/Karaleti/slide3.jpg",
-      "/Karaleti/slide4.jpg",
-      "/Karaleti/slide5.jpg",
-      "/Karaleti/slide6.jpg",
-      "/Karaleti/slide7.jpg",
-      "/Karaleti/slide8.jpg",
-      "/Karaleti/slide9.jpg",
-      "/Karaleti/slide10.jpg",
+      {
+        full: "/Karaleti/slide1.jpg",
+        thumb: "/thumb/karaleti-thumb (1).jpg",
+      },
+      {
+        full: "/Karaleti/slide2.jpg",
+        thumb: "/thumb/karaleti-thumb (2).jpg",
+      },
+      {
+        full: "/Karaleti/slide3.jpg",
+        thumb: "/thumb/karaleti-thumb (3).jpg",
+      },
+      {
+        full: "/Karaleti/slide4.jpg",
+        thumb: "/thumb/karaleti-thumb (4).jpg",
+      },
+      {
+        full: "/Karaleti/slide5.jpg",
+        thumb: "/thumb/karaleti-thumb (5).jpg",
+      },
+      {
+        full: "/Karaleti/slide6.jpg",
+        thumb: "/thumb/karaleti-thumb (6).jpg",
+      },
+      {
+        full: "/Karaleti/slide7.jpg",
+        thumb: "/thumb/karaleti-thumb (7).jpg",
+      },
+      {
+        full: "/Karaleti/slide8.jpg",
+        thumb: "/thumb/karaleti-thumb (8).jpg",
+      },
+      {
+        full: "/Karaleti/slide9.jpg",
+        thumb: "/thumb/karaleti-thumb (9).jpg",
+      },
+      {
+        full: "/Karaleti/slide10.jpg",
+        thumb: "/thumb/karaleti-thumb (10).jpg",
+      },
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -417,13 +721,34 @@ const items = ref([
     title: "ხოხობი",
     date: "24 June 2014",
     images: [
-      "/Xoxobi/slide1.jpg",
-      "/Xoxobi/slide2.jpg",
-      "/Xoxobi/slide3.jpg",
-      "/Xoxobi/slide4.jpg",
-      "/Xoxobi/slide5.jpg",
-      "/Xoxobi/slide6.jpg",
-      "/Xoxobi/slide7.jpg",
+      {
+        full: "/Xoxobi/slide1.jpg",
+        thumb: "/thumb/xoxobi-thumb (1).jpg",
+      },
+      {
+        full: "/Xoxobi/slide2.jpg",
+        thumb: "/thumb/xoxobi-thumb (2).jpg",
+      },
+      {
+        full: "/Xoxobi/slide3.jpg",
+        thumb: "/thumb/xoxobi-thumb (3).jpg",
+      },
+      {
+        full: "/Xoxobi/slide4.jpg",
+        thumb: "/thumb/xoxobi-thumb (4).jpg",
+      },
+      {
+        full: "/Xoxobi/slide5.jpg",
+        thumb: "/thumb/xoxobi-thumb (5).jpg",
+      },
+      {
+        full: "/Xoxobi/slide6.jpg",
+        thumb: "/thumb/xoxobi-thumb (6).jpg",
+      },
+      {
+        full: "/Xoxobi/slide7.jpg",
+        thumb: "/thumb/xoxobi-thumb (7).jpg",
+      },
     ],
     description:
       "ეს სინაგოგა წარმოადგენს ერთგვარ კომპლექსს.რადგან აქ გარდა სინაგოგისა ვხვდებით სხვა დამხმარე ნაგებობებს, რომლებიც იუდეური რიტუალების ჩასატარებლადაა განკუთვნილი.ამ შენობებში ხდებოდა ძველი ებრაული (ივრითი) ენის შესწავლა. აგრეთვე მათთვის, ვინც ლოცვის დროს მთავარ სინაგოგაში ვერ ეტეოდა, ტარდებოდა ლოცვა. მრევლის სიმრავლე განაპირობებდა დამატებითი ოთახების გამოყენებას ლოცვისა და სხვა რიტუალების ჩასატარებლად.",
@@ -432,7 +757,14 @@ const items = ref([
 </script>
 <template>
   <HeaderComponent />
-  <Carousel :Items="items" />
+  <Suspense>
+    <template #default>
+      <Carousel :Items="items" />
+    </template>
+    <template #fallback>
+      <ProgressSpinner />
+    </template>
+  </Suspense>
   <Footer />
 </template>
 <style lang="scss" scoped></style>

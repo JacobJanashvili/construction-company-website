@@ -1,7 +1,16 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import Swiper from "swiper";
-import { ref, onMounted, watch, nextTick, defineAsyncComponent, computed } from "vue";
+import {
+  ref,
+  onMounted,
+  watch,
+  nextTick,
+  defineAsyncComponent,
+  computed,
+} from "vue";
+import Skeleton from "primevue/skeleton";
+
 import { Navigation } from "swiper/modules";
 const swiperInstances = ref([]);
 const Gallery = defineAsyncComponent(() => import("primevue/galleria"));
@@ -9,21 +18,6 @@ const Gallery = defineAsyncComponent(() => import("primevue/galleria"));
 const props = defineProps({
   Items: Array,
 });
-
-const responsiveOptions = [
-  {
-    breakpoint: "1024px",
-    numVisible: 3,
-  },
-  {
-    breakpoint: "768px",
-    numVisible: 2,
-  },
-  {
-    breakpoint: "560px",
-    numVisible: 1,
-  },
-];
 
 const isLoading = ref(false);
 const totalLength = ref(props.Items.length);
@@ -35,16 +29,16 @@ const indexOfFirstPage = ref(indexOfLastPage.value - itemsPerPage.value);
 const currentItems = ref([]);
 
 const galleriaData = computed(() =>
-  currentItems.value.map(location => {
-    const galleriaItems = location.images.map(imgObj => ({
+  currentItems.value.map((location) => {
+    const galleriaItems = location.images.map((imgObj) => ({
       itemImageSrc: imgObj.full,
       thumbnailImageSrc: imgObj.thumb,
       alt: `${location.title} სლაიდი`,
-      title: location.title
+      title: location.title,
     }));
     return {
       ...location,
-      galleriaItems
+      galleriaItems,
     };
   })
 );
@@ -52,13 +46,16 @@ const galleriaData = computed(() =>
 // Galleria State
 const isGalleryVisible = ref(false);
 const selectedImages = ref([]);
-const openGallery = (index) => {
-  selectedImages.value = galleriaData.value[index]?.galleriaItems || [];
+const activeImageIndex = ref(0);
+const openGallery = (groupIndex, imageIndex) => {
+  selectedImages.value = galleriaData.value[groupIndex]?.galleriaItems || [];
+  activeImageIndex.value = imageIndex;
   isGalleryVisible.value = true;
 };
 const closeGallery = () => {
   isGalleryVisible.value = false;
   selectedImages.value = [];
+  activeImageIndex.value = 0;
 };
 
 // Pagination Setup
@@ -97,16 +94,21 @@ const goToPage = async (page) => {
 
 const initializeSwiper = async () => {
   await nextTick();
-  swiperInstances.value = currentItems.value.map((_, index) => {
-    return new Swiper(`.swiper-${index}`, {
-      modules: [Navigation],
-      slidesPerView: 3,
-      spaceBetween: 10,
-      navigation: {
-        nextEl: `.nextButton-${index}`,
-        prevEl: `.prevButton-${index}`,
-      },
-    });
+  swiperInstances.value = [];
+
+  currentItems.value.forEach((_, index) => {
+    const container = document.querySelector(`.swiper-${index}`);
+    if (container) {
+      swiperInstances.value[index] = new Swiper(container, {
+        modules: [Navigation],
+        slidesPerView: 3,
+        spaceBetween: 10,
+        navigation: {
+          nextEl: `.nextButton-${index}`,
+          prevEl: `.prevButton-${index}`,
+        },
+      });
+    }
   });
 };
 
@@ -132,84 +134,144 @@ watch(currentItems, async () => {
 
 <template>
   <div class="wrapper">
-    <v-progress-circular
-      v-if="isLoading"
-      color="amber"
-      indeterminate
-    ></v-progress-circular>
-
-    <div
-      class="item"
-      v-else
-      v-for="(carousel, index) in currentItems"
-      :key="carousel.id"
-    >
-      <div class="item_subwrapper">
-        <h1 class="title">{{ carousel.title }}</h1>
-        <p class="description">{{ carousel.description }}</p>
-        <div class="button-div">
-          <a
-            class="prevButton arrowWrapper"
-            :class="'prevButton-' + index"
-            @click="swiperInstances[index]?.slidePrev()"
-          >
-            <img id="arrow" src="/fi-rr-arrow-left.svg" alt="" />
-          </a>
-          <a
-            class="nextButton arrowWrapper"
-            :class="'nextButton-' + index"
-            @click="swiperInstances[index]?.slideNext()"
-          >
-            <img id="arrow" src="/fi-rr-arrow-right.svg" alt="" />
-          </a>
+    <!-- Show skeleton while loading -->
+    <template v-if="isLoading">
+      <div v-for="n in 3" :key="n" class="skeleton-container">
+        <Skeleton height="24px" width="300px" class="mb-2" />
+        <Skeleton height="20px" width="250px" class="mb-2" />
+        <div class="skeleton-swiper" style="display: flex; gap: 10px">
+          <Skeleton
+            height="366px"
+            width="100%"
+            v-for="i in 3"
+            :key="i"
+            class="mr-2"
+          />
         </div>
       </div>
-      <div class="swiper" :class="'swiper-' + index">
-        <div class="swiper-wrapper">
-          <div
-            class="swiper-slide"
-            @click="openGallery(index)"
-            v-for="image in carousel.images"
-            :key="image.full"
-          >
-            <img class="item-img" :src="image.full" alt="" />
-            <div class="img-hover">
-              <svg class="img-hover-icon" width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <path
-                  d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"
-                />
-              </svg>
+    </template>
+    <template v-else>
+      <div
+        class="item"
+        v-for="(carousel, index) in currentItems"
+        :key="carousel.id"
+      >
+        <div class="item_subwrapper">
+          <h1 class="title">{{ carousel.title }}</h1>
+          <p class="description">{{ carousel.description }}</p>
+          <div class="button-div">
+            <a
+              class="prevButton arrowWrapper"
+              :class="'prevButton-' + index"
+              @click="swiperInstances[index]?.slidePrev()"
+            >
+              <img
+                id="arrow"
+                class="arrow-left"
+                src="/fi-rr-arrow-left.svg"
+                alt=""
+              />
+            </a>
+            <a
+              class="nextButton arrowWrapper"
+              :class="'nextButton-' + index"
+              @click="swiperInstances[index]?.slideNext()"
+            >
+              <img
+                id="arrow"
+                class="arrow-right"
+                src="/fi-rr-arrow-right.svg"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+        <div class="swiper" :class="'swiper-' + index">
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide"
+              @click="openGallery(index, i)"
+              v-for="(image, i) in carousel.images"
+              :key="image.full"
+            >
+              <img class="item-img" :src="image.full" alt="" />
+              <div class="img-hover">
+                <svg
+                  class="img-hover-icon"
+                  width="30px"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 576 512"
+                >
+                  <path
+                    d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </template>
 
+    <!-- Gallery with activeIndex -->
     <Gallery
       v-model:visible="isGalleryVisible"
       :value="selectedImages"
-      :numVisible="4"
+      :activeIndex="activeImageIndex"
       :full-screen="true"
       :circular="true"
       :showItemNavigators="true"
+      :num-visible="4"
+      :show-thumbnail-navigators="false"
       @hide="closeGallery"
-      :responsiveOptions="responsiveOptions"
-      containerStyle="max-width: 800px; margin: auto;"
+      :pt="{
+        root: { style: 'position: relative; overflow: visible; border: none;' },
+        nextButton: {
+          style: `
+      position: absolute;
+      top: 50%;
+      right: -80px; /* negative offset moves it outside */
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      z-index: 20;
+      cursor: pointer;
+      background-color: white;
+      border-radius: 0
+    `,
+        },
+        prevButton: {
+          style: `
+      position: absolute;
+      top: 50%;
+      left: -80px; /* negative offset to move outside left */
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      z-index: 20;
+      cursor: pointer;
+    `,
+        },
+      }"
     >
+      <!-- Main image -->
       <template #item="slotProps">
         <img
           :src="slotProps.item.itemImageSrc"
-          style="width: 798px; display: block; height: 448px; object-fit: cover;"
+          style="width: 840px; height: 630px; object-fit: cover"
         />
       </template>
+
+      <!-- Thumbnail preview -->
       <template #thumbnail="slotProps">
         <img
           :src="slotProps.item.thumbnailImageSrc"
-          style="height: 90px;"
+          style="display: block; width: 100%"
         />
       </template>
-    </Gallery>
 
+      <!-- Custom nav icons -->
+    </Gallery>
     <div class="pagination_wrapper">
       <div
         class="pageNumber"
@@ -228,7 +290,6 @@ watch(currentItems, async () => {
 .swiper {
   width: 100%;
 }
-
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.2s ease;
@@ -336,5 +397,22 @@ watch(currentItems, async () => {
   .active {
     background-color: #ffb717;
   }
+}
+::v-deep(.p-galleria-prev-icon),
+::v-deep(.p-galleria-next-icon) {
+  background-image: none !important;
+  width: 30px;
+  height: 30px;
+  mask-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+::v-deep(.p-galleria-prev-icon) {
+  background-image: url("/fi-rr-arrow-left.svg");
+}
+
+::v-deep(.p-galleria-next-icon) {
+  background-image: url("/fi-rr-arrow-right.svg");
 }
 </style>

@@ -41,10 +41,9 @@ const show = ref(false);
   border-top: 2px solid #d9d9d9;
   border-bottom: 2px solid #d9d9d9;
   user-select: none;
-
 }
 .wrapper + .wrapper {
-  border-top: none; /* Prevent double borders between accordions */
+  border-top: none;
 }
 
 .wrapper.active svg {
@@ -61,11 +60,9 @@ const show = ref(false);
   align-items: center;
   justify-content: space-between;
   margin: 20px 0;
-
 }
 .header.active {
   color: #242424;
-
 }
 .content {
   max-height: 0;
@@ -74,5 +71,22 @@ const show = ref(false);
 }
 svg {
   transition: transform 0.3s ease-in;
+}
+@media (min-width: 200px) and (max-width: 900px) {
+  .accordion-wrapper {
+    width: auto;
+    .wrapper {
+      width: 374px;
+      .header{
+        #arrow-up{
+          width: 25px;
+          height: 24px;
+        }
+        h1{
+          font-size: 14px;
+        }
+      }
+    }
+  }
 }
 </style>
