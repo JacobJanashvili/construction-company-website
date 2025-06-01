@@ -27,6 +27,8 @@ const currentPage = ref(1);
 const indexOfLastPage = ref(currentPage.value * itemsPerPage.value);
 const indexOfFirstPage = ref(indexOfLastPage.value - itemsPerPage.value);
 const currentItems = ref([]);
+const isNextHovered = ref(false);
+const isPrevHovered = ref(false);
 
 const galleriaData = computed(() =>
   currentItems.value.map((location) => {
@@ -237,8 +239,24 @@ watch(currentItems, async () => {
       z-index: 20;
       cursor: pointer;
       background-color: white;
+      border: 1px solid #ffb717;
       border-radius: 0
     `,
+          onmouseenter: (event) => {
+            event.target.style.backgroundColor = '#ffb717';
+            const img = event.target.querySelector('img');
+            if (img) {
+              img.style.filter =
+                'invert(100%) brightness(1000%) contrast(100%)';
+            }
+          },
+          onmouseleave: (event) => {
+            event.target.style.backgroundColor = 'white';
+            const img = event.target.querySelector('img');
+            if (img) {
+              img.style.filter = 'invert(0%)';
+            }
+          },
         },
         prevButton: {
           style: `
@@ -250,10 +268,48 @@ watch(currentItems, async () => {
       height: 40px;
       z-index: 20;
       cursor: pointer;
+      background-color: white;
+      border-radius: 0;
+      border: 1px solid #ffb717;
+
     `,
+          onmouseenter: (event) => {
+            event.target.style.backgroundColor = '#ffb717';
+            const img = event.target.querySelector('img');
+            if (img) {
+              img.style.filter =
+                'invert(100%) brightness(1000%) contrast(100%)';
+            }
+          },
+          onmouseleave: (event) => {
+            event.target.style.backgroundColor = 'white';
+            const img = event.target.querySelector('img');
+            if (img) {
+              img.style.filter = 'invert(0%)';
+            }
+          },
         },
       }"
     >
+      <template #header>
+        <button
+          class="galleria-close-btn"
+          @click="closeGallery"
+          aria-label="Close gallery"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="20"
+            viewBox="0 0 384 512"
+            fill="white"
+          >
+            <path
+              d="M231 256l107-107c12-12 12-33 0-45s-33-12-45 0L186 211 79 104c-12-12-33-12-45 0s-12 33 0 45l107 107L34 363c-12 12-12 33 0 45s33 12 45 0l107-107 107 107c12 12 33 12 45 0s12-33 0-45L231 256z"
+            />
+          </svg>
+        </button>
+      </template>
+
       <!-- Main image -->
       <template #item="slotProps">
         <img
@@ -270,7 +326,54 @@ watch(currentItems, async () => {
         />
       </template>
 
-      <!-- Custom nav icons -->
+      <template #nextitemicon>
+        <div
+          @mouseenter="isNextHovered = true"
+          @mouseleave="isNextHovered = false"
+          :style="{
+            backgroundColor: isNextHovered ? '#ffb717' : 'white',
+            width: '40px',
+            height: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+          }"
+        >
+          <img
+            src="/fi-rr-arrow-right.svg"
+            :style="{
+              filter: isNextHovered ? 'brightness(0) invert(1)' : 'none',
+              width: '20px',
+              height: '20px',
+            }"
+          />
+        </div>
+      </template>
+      <template #previousitemicon>
+        <div
+          @mouseenter="isPrevHovered = true"
+          @mouseleave="isPrevHovered = false"
+          :style="{
+            backgroundColor: isPrevHovered ? '#ffb717' : 'white',
+            width: '40px',
+            height: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+          }"
+        >
+          <img
+            src="/fi-rr-arrow-left.svg"
+            :style="{
+              filter: isPrevHovered ? 'brightness(0) invert(1)' : 'none',
+              width: '20px',
+              height: '20px',
+            }"
+          />
+        </div>
+      </template>
     </Gallery>
     <div class="pagination_wrapper">
       <div
@@ -398,21 +501,30 @@ watch(currentItems, async () => {
     background-color: #ffb717;
   }
 }
-::v-deep(.p-galleria-prev-icon),
-::v-deep(.p-galleria-next-icon) {
-  background-image: none !important;
-  width: 30px;
-  height: 30px;
-  mask-size: cover;
-  background-size: contain;
-  background-repeat: no-repeat;
+.galleria-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 50;
+  background-color: #ffb717;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-::v-deep(.p-galleria-prev-icon) {
-  background-image: url("/fi-rr-arrow-left.svg");
+.galleria-close-btn:hover {
+  background-color: #ffa500;
+  transform: scale(1.1);
 }
 
-::v-deep(.p-galleria-next-icon) {
-  background-image: url("/fi-rr-arrow-right.svg");
+.galleria-close-btn svg {
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
 }
 </style>

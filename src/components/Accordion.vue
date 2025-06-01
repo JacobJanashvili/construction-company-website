@@ -13,9 +13,7 @@ const show = ref(false);
     <div class="header" :class="{ active: show }">
       <h1>{{ header }}</h1>
       <svg
-        id="arrow-up"
-        width="25"
-        height="24"
+        class="arrow-up"
         viewBox="0 0 25 24"
         fill="#374957"
         xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +30,13 @@ const show = ref(false);
   </div>
 </template>
 <style lang="scss" scoped>
-.wrapper:hover #arrow-up {
+.arrow-up {
+  width: 25px;
+  height: 24px;
+  flex-shrink: 0; /* prevent shrinking inside flex container */
+}
+
+.wrapper:hover .arrow-up {
   fill: #ffb717;
 }
 .wrapper {
@@ -78,7 +82,7 @@ svg {
     .wrapper {
       width: 374px;
       .header{
-        #arrow-up{
+        .arrow-up{
           width: 25px;
           height: 24px;
         }

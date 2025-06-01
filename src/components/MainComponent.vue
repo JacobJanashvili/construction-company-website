@@ -115,7 +115,9 @@ const AccordionList = [
         ვახორციელებთ პროექტების მართვას და გადავჭრით რთულ სისტემური საინჟინრო და
         გარემოსდაცვით ამოცანებს.
       </p>
-      <div class="page-transfer-no-background">ვრცლად</div>
+      <div class="page-transfer-no-background" @click="$router.push('/about')">
+        ვრცლად
+      </div>
     </div>
     <div class="image-wrapper">
       <img src="/Section1-first-image.jpg" alt="" />
@@ -191,15 +193,15 @@ const AccordionList = [
       <div class="page-transfer-no-background">ყველა პროექტი</div>
     </div>
     <div class="img-wrapper" v-if="windowWdth.valueOf() > 900">
-      <div class="img-subwrapper">
+      <div class="img-subwrapper" @click="$router.push('/projects')">
         <img src="/Batumis-sinagoga.jpg" alt="ბათუმის სინაგოგა" />
         <div class="text-background">ბათუმის სინაგოგა</div>
       </div>
-      <div class="img-subwrapper">
+      <div class="img-subwrapper" @click="$router.push('/projects')">
         <img src="/Gamshvebi-punqtebi.jpg" alt="გამშვები პუნქტები" />
         <div class="text-background">გამშვები პუნქტები</div>
       </div>
-      <div class="img-subwrapper">
+      <div class="img-subwrapper" @click="$router.push('/projects')">
         <img src="/Tetraqtis-samushaoebi.jpg" alt="ტეტრაქტის სამუშაოები" />
         <div class="text-background">ტეტრაქტის სამუშაოები</div>
       </div>
@@ -211,19 +213,19 @@ const AccordionList = [
       <div class="projects-swiper swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <div class="img-subwrapper">
+            <div class="img-subwrapper" @click="$router.push('/projects')">
               <img src="/Batumis-sinagoga.jpg" alt="ბათუმის სინაგოგა" />
               <div class="text-background">ბათუმის სინაგოგა</div>
             </div>
           </div>
           <div class="swiper-slide">
-            <div class="img-subwrapper">
+            <div class="img-subwrapper" @click="$router.push('/projects')">
               <img src="/Gamshvebi-punqtebi.jpg" alt="გამშვები პუნქტები" />
               <div class="text-background">გამშვები პუნქტები</div>
             </div>
           </div>
           <div class="swiper-slide">
-            <div class="img-subwrapper">
+            <div class="img-subwrapper" @click="$router.push('/projects')">
               <img
                 src="/Tetraqtis-samushaoebi.jpg"
                 alt="ტეტრაქტის სამუშაოები"
@@ -434,7 +436,7 @@ const AccordionList = [
   .img-subwrapper {
     position: relative;
     cursor: pointer;
-
+    margin: 0 10px;
     .text-background {
       background-color: #ffb717;
       position: absolute;

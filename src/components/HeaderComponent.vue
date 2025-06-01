@@ -17,7 +17,7 @@ onBeforeUnmount(() => {
 </script>
 <template>
   <nav v-if="windowWidth >= 900">
-    <img class="header-logo" src="/logo.jpg" alt="" />
+    <img class="header-logo" :style="{'right': windowWidth > 900 && windowWidth <= 1400 ? 0 : '150px'}" src="/logo.jpg" alt="" />
     <ul>
       <li :class="{ active: $route.path == '/' }" @click="$router.push('/')">
         მთავარი
@@ -125,19 +125,19 @@ nav {
       top: 0;
       left: 0;
       width: 100vw;
-     z-index: 6;
-     margin-top: 70px;
-     transition: 200ms ease-in-out;
+      z-index: 6;
+      margin-top: 70px;
+      transition: 200ms ease-in-out;
       .menu-wrapper {
         margin: 92px 20px;
         color: #242424;
-        h1{
+        h1 {
           margin: 19px 0;
         }
-        h1::after{
-          content: '';
+        h1::after {
+          content: "";
           display: block;
-          background-color: #DDDDDD99;
+          background-color: #dddddd99;
           height: 2px;
           width: 95%;
           margin-top: 19px;
@@ -213,6 +213,11 @@ nav {
       margin-top: 3px;
       color: #242424;
     }
+  }
+}
+@media (max-width: 1400px) {
+  .header-logo {
+    right: 0;
   }
 }
 </style>

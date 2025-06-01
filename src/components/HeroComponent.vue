@@ -1,4 +1,5 @@
 <script setup>
+
 const props = defineProps(["screenWidth"]);
 console.log(props.screenWidth);
 </script>
@@ -12,10 +13,10 @@ console.log(props.screenWidth);
         გახდა.
       </p>
       <div class="subwrapper">
-        <div class="page-transfer">
+        <div class="page-transfer" @click="$router.push('/contacts')">
           <p>კონტაქტი</p>
         </div>
-        <div class="page-transfer no-background">
+        <div class="page-transfer no-background" @click="$router.push('/projects')">
           <p>ჩვენი პროექტები</p>
         </div>
       </div>
