@@ -2,9 +2,11 @@
 import "swiper/css";
 import "swiper/css/navigation";
 import ProgressSpinner from "primevue/progressspinner";
+import Toast from "primevue/toast";
 </script>
 
 <template>
+  <Toast />
   <Suspense>
     <template #default>
       <RouterView />
@@ -15,8 +17,7 @@ import ProgressSpinner from "primevue/progressspinner";
   </Suspense>
 </template>
 
-
-<style >
+<style>
 * {
   margin: 0;
   padding: 0;
