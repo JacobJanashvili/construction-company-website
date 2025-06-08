@@ -28,7 +28,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     env:
-      VITE_EMAILJS_SENDERID: ${{secrets.VITE_EMAILJS_SENDERID}}
+      VITE_EMAILJS_SERVICEID: ${{secrets.VITE_EMAILJS_SERVICEID}}
       VITE_EMAILJS_TEMPLATEID: ${{secrets.VITE_EMAILJS_TEMPLATEID}}
       VITE_EMAILJS_PUBLICKEY: ${{secrets.VITE_EMAILJS_PUBLICKEY}}
       VITE_SENDER_EMAIL: ${{secrets.VITE_SENDER_EMAIL}}
