@@ -32,7 +32,7 @@ const sendEmail = () => {
   loading.value = true;
   emailjs
     .sendForm(
-      import.meta.env.VITE_EMAILJS_SENDERID,
+      import.meta.env.VITE_EMAILJS_SERVICEID,
       import.meta.env.VITE_EMAILJS_TEMPLATEID,
       formRef.value,
       {
