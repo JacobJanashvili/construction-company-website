@@ -52,6 +52,7 @@ const sendEmail = () => {
       },
       (error) => {
         console.log("FAILED...", error);
+        console.log(import.meta.env.VITE_EMAILJS_SERVICEID);
         loading.value = false;
         resultNotification.add({
           severity: "error",
